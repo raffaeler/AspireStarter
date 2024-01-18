@@ -17,11 +17,16 @@ public static class WeatherApi
     // RAF_TRACING
     private static ActivitySource _activitySource = new ActivitySource("RafWeatherApiTracing", "1.0.0");
 
-    public static void MapWeatherApi(this IEndpointRouteBuilder app, IConfiguration configuration)
+    public static void MapWeatherApi(
+        this IEndpointRouteBuilder app,
+        IConfiguration configuration)
     {
 
-        app.MapGet("/weatherforecast",
-            (HttpRequest request, ClaimsPrincipal user, ILogger < Program> logger, WeatherMetrics weatherMetrics) =>
+        app.MapGet("/weatherforecast", (
+            HttpRequest request,
+            ClaimsPrincipal user,
+            ILogger < Program> logger,
+            WeatherMetrics weatherMetrics) =>
         {
             // RAF_TRACING
             using Activity? activity = _activitySource.StartActivity(
@@ -44,6 +49,8 @@ public static class WeatherApi
                 // RAF_LOGGING
                 //LogHelper1.LogGetWeatherAction(logger, index, null);
                 //LogHelper2.LogGetWeatherAction(logger, index, weatherMeasure);
+
+                // RAF_METRICS
                 weatherMetrics.ForecastRequested(weatherMeasure);
 
                 return weatherMeasure;

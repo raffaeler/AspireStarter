@@ -8,7 +8,7 @@ builder.AddServiceDefaults();
 // Add services to the container.
 builder.Services.AddProblemDetails();
 
-builder.Services.AddSingleton<WeatherMetrics>();    // RAF
+builder.Services.AddSingleton<WeatherMetrics>();    // RAF_METRICS
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
