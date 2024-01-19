@@ -2,6 +2,8 @@
 
 namespace AspireStarter.ApiService;
 
+// RAF_TRACING
+
 public class WeatherMetrics
 {
     public static readonly string WeatherMetricsName = "WeatherApi";

@@ -21,7 +21,6 @@ public static class WeatherApi
         this IEndpointRouteBuilder app,
         IConfiguration configuration)
     {
-
         app.MapGet("/weatherforecast", (
             HttpRequest request,
             ClaimsPrincipal user,
@@ -44,11 +43,12 @@ public static class WeatherApi
                     summaries[Random.Shared.Next(summaries.Length)]
                 );
 
-                activity?.AddTag("Freeze", weatherMeasure.TemperatureC < 0);    // RAF_TRACING
-
                 // RAF_LOGGING
                 //LogHelper1.LogGetWeatherAction(logger, index, null);
                 //LogHelper2.LogGetWeatherAction(logger, index, weatherMeasure);
+
+                // RAF_TRACING
+                activity?.AddTag("Freeze", weatherMeasure.TemperatureC < 0);
 
                 // RAF_METRICS
                 weatherMetrics.ForecastRequested(weatherMeasure);

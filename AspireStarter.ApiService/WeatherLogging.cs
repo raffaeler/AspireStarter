@@ -1,5 +1,7 @@
 ﻿namespace AspireStarter.ApiService;
 
+// RAF_LOGGING
+
 // Old style logging
 static class LogHelper1
 {

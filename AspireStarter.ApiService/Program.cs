@@ -16,7 +16,7 @@ app.UseExceptionHandler();
 
 app.MapWeatherApi(app.Configuration);
 
-// RAF_GRAFANA_1
+// RAF_GRAFANA
 app.MapGet("startup", () =>
 {
     return new
