@@ -5,6 +5,7 @@ namespace AspireStarter.ApiService;
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
+    // RAF_LOGGING
     [LogPropertyIgnore]
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
@@ -15,7 +16,8 @@ public static class WeatherApi
         "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"];
 
     // RAF_TRACING
-    private static ActivitySource _activitySource = new ActivitySource("RafWeatherApiTracing", "1.0.0");
+    private static ActivitySource _activitySource =
+        new ActivitySource("RafWeatherApiTracing", "1.0.0");
 
     public static void MapWeatherApi(
         this IEndpointRouteBuilder app,
@@ -32,7 +34,8 @@ public static class WeatherApi
                 name: "Activity GetWeatherForecast",
                 kind: ActivityKind.Server,
                 parentId: null,
-                tags: [new KeyValuePair<string, object?>("Authenticated", user.Identity?.IsAuthenticated ?? false)]);
+                tags: [new KeyValuePair<string, object?>(
+                        "Authenticated", user.Identity?.IsAuthenticated ?? false)]);
 
             var forecast = Enumerable.Range(1, 5).Select(index =>
             {
